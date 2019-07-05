@@ -14,7 +14,7 @@ extension UIViewController {
     }
     
     enum Scene: Equatable {
-        case login, home
+        case login, home, movieDetails
     }
     
     func navigate(to scene: Scene, transition: Transition, delegate: Delegate? = nil) {
@@ -51,6 +51,8 @@ extension UIViewController {
             return LoginController()
         case .home:
             return HomeController()
+        case .movieDetails:
+            return MovieDetails()
         }
     }
     
