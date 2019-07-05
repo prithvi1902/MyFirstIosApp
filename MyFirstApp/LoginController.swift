@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Stevia
 
 class LoginController: ViewController {
     
@@ -14,20 +15,20 @@ class LoginController: ViewController {
         $0.delegate = self
         $0.setLeftPadding(16)
         $0.style(placeHolder: "User name")
-        $0.border(.orange, width: 1)
+        $0.border(.orange)
     }
     
     lazy var passwordTextField = UITextField().then {
         $0.style(placeHolder: "Password")
         $0.delegate = self
         $0.setLeftPadding(16)
-        $0.border(.orange, width: 1)
+        $0.border(.orange)
     }
     
     lazy var loginButton = UIButton().then {
         $0.style("Login", font: UIFont.systemFont(ofSize: 16, weight: .medium), color: .black, bgColor: .white)
         $0.onTap { [weak self] button in
-            if(!(self?.isTextFieldsEmpty() ?? false)){
+            if(!(self?.isTextFieldsEmpty() ?? false)) {
                 self?.login()
             }
         }
@@ -41,11 +42,13 @@ class LoginController: ViewController {
     override func render() {
         view.backgroundColor = UIColor.white
         view.sv(userNameTextField, passwordTextField, loginButton, activityIndicator)
-        userNameTextField.width(300).roundedEdges(50).centerHorizontally().top(380)
-        passwordTextField.width(300).roundedEdges(50).centerHorizontally().top(440)
+        userNameTextField.width(300).roundedEdges(50).centerHorizontally().top(300)
+        passwordTextField.width(300).roundedEdges(50).centerHorizontally()
+        passwordTextField.Top == userNameTextField.Bottom + 20
         passwordTextField.isSecureTextEntry = true
-        loginButton.width(200).roundedEdges(44).centerHorizontally().top(500)
-        activityIndicator.centerHorizontally().size(50).top(550)
+        loginButton.width(200).roundedEdges(44).centerHorizontally()
+        loginButton.Top == passwordTextField.Bottom + 20
+        activityIndicator.centerInContainer()
     }
     
     func isTextFieldsEmpty() -> Bool {
@@ -63,10 +66,10 @@ class LoginController: ViewController {
     func login(){
         let delay = 3 // seconds
         self.activityIndicator.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-            self.navigate(to: .home, transition: .push)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) { [weak self] in
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
+            self?.navigate(to: .home, transition: .push)
         }
     }
     

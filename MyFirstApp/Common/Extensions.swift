@@ -104,6 +104,7 @@ extension UICollectionView {
 extension UIColor {
     static let separatorColor = UIColor.lightGray
     static let lightMaroon = UIColor.init(red: 128, green: 0, blue: 0, alpha: 0.11)
+    static let maroon = UIColor.init(red: 128, green: 0, blue: 0, alpha: 0.0)
 }
 
 extension UIView {
@@ -259,7 +260,8 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
     }
     
-    func style(_ font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural) {
+    func style(_ text: String, font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural) {
+        self.text = text
         self.font = font
         textColor = color
         textAlignment = alignment

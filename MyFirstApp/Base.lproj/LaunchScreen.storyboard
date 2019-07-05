@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2n-xT-PkS">
-                                <rect key="frame" x="105" y="311" width="164" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2n-xT-PkS">
+                                <rect key="frame" x="123.5" y="323.5" width="128" height="20.5"/>
                                 <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="My First iOS App">
@@ -33,7 +32,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="0.11496682363013698" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.84289732044467014" green="0.69441141716240773" blue="0.70372732855042797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A2n-xT-PkS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GvX-uc-GU3"/>
+                            <constraint firstItem="A2n-xT-PkS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HV7-07-Fgs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY" colorLabel="IBBuiltInLabel-Orange"/>
                     </view>
                 </viewController>
