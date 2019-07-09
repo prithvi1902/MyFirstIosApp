@@ -8,47 +8,28 @@
 import UIKit
 import Stevia
 
-//protocol HomeItem {
-//    var value: Movie { get }
-//}
-//
-//extension HomeItem where Self: RawRepresentable, Self.RawValue == Movie {
-//    var value: Movie {
-//        return rawValue
-//    }
-//}
-
 enum HomeSection: String, CaseIterable {
     case a = "Hollywood", b = "Bollywood"
-
-//    enum ItemA: String, HomeItem, CaseIterable {
-//        case adam, aaron, astor
-//    }
-//
-//    enum ItemB: String, HomeItem, CaseIterable {
-//        case bronn, beyonce, brian
-//    }
     
-    var items: [Movie] {
+    var items: [Flower] {
         switch self {
         case .a:
             return [
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019"),
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019"),
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019")
+                Flower(name: "Montsera", isFavourite: false, imageName: "monstera"),
+                Flower(name: "Succulants", isFavourite: true, imageName: "succulant"),
+                Flower(name: "Ferns", isFavourite: false, imageName: "fern"),
+                Flower(name: "Rose", isFavourite: false, imageName: "rose")
             ]
         case .b:
             return [
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019"),
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019"),
-                Movie(title: "Anabelle", subTitle: "Comes home", rating: "4.0", image: "rose", description: "Horror and a thriller movie, released in 2019")
+            Flower(name: "A", isFavourite: false, imageName: "rose")
             ]
         }
     }
 }
 
 struct HomeDataSource {
-    let dataSource: (sections: [HomeSection], items: [[Movie]]) = {
+    let dataSource: (sections: [HomeSection], items: [[Flower]]) = {
         let sections = HomeSection.allCases
         let items = sections.map { $0.items }
         return (sections, items)
@@ -56,23 +37,9 @@ struct HomeDataSource {
 }
 
 class HomeController: ViewController {
-
-    lazy var tableView = TableView<HomeSection, Movie>().then {
+    
+    lazy var tableView = TableView<HomeSection, Flower>().then {
         $0.register(HomeTableCell.self)
-        $0.headerHeight = { _ in 40 }
-        $0.header = { table, section, item in
-            UIButton().then {
-                $0.backgroundColor = .lightMaroon
-                let label = UILabel().then {
-                    $0.style(item.rawValue)
-                }
-                $0.sv(label)
-                label.left(16).top(0).right(16).bottom(0)
-                $0.onTap { _ in
-                    table.toggle(section)
-                }
-            }
-        }
         $0.configureCell = { table, index, item in
             table.dequeueCell(HomeTableCell.self, at: index, with: item)
         }
@@ -83,55 +50,83 @@ class HomeController: ViewController {
         $0.update(List.dataSource(sections: data.sections, items: data.items))
     }
 
-    let titleLabel = UILabel().then{
-        $0.text("This is the home screen")
-        $0.textColor = .black
-        $0.font = UIFont.boldSystemFont(ofSize: 24)
-    }
-
     override func render() {
         let imageView = UIImageView().then {
-            $0.image("rose")
-            $0.contentMode = .scaleAspectFill
+            $0.image("leaves")
+            $0.contentMode = .scaleAspectFit
         }
+        let title = UILabel().then{
+            $0.style("Flower School", font: UIFont.boldSystemFont(ofSize: 36.0), color: .white, bgColor: .clear, alignment: NSTextAlignment.left)
+            $0.height(100)
+        }
+        let searchTextField = UITextField().then {
+            $0.style(UIFont.systemFont(ofSize: 16), color: .white, bgColor: .lightGreen, alignment: NSTextAlignment.left, placeHolder: "Search")
+            $0.setLeftPadding(16)
+        }
+        imageView.sv(title, searchTextField, tableView)
+        title.top(200).left(20)
+        searchTextField.Top == title.Bottom + 10
+        searchTextField.height(100).left(0).right(20).roundedEdges(30)
+        tableView.Top == searchTextField.Bottom + 20
+        tableView.right(0).bottom(0)
+        align(lefts: title, searchTextField, tableView)
+        view.sv(imageView)
+        imageView.top(0).left(10).right(10).height(500)
         view.backgroundColor = .white
-        view.sv(tableView)
-        tableView.top(44).left(0).right(0).bottom(0)
-        imageView.circle(200).centerInContainer()
+//        imageView.layout(
+//            100,
+//            title,
+//            50,
+//            searchTextField,
+//            50,
+//            tableView
+//        )
+//        align(lefts: title, searchTextField, tableView)
     }
 }
 
 class HomeTableCell: TableViewCell, Configurable {
-
-    let avatar = UIImageView().then {
+    let backgroundImage = UIImageView().then {
         $0.contentMode = .scaleAspectFill
     }
     
     let title = UILabel()
-    let subTitle = UILabel()
-    let rating = UILabel()
-    
-    override func render() {
-        sv(avatar, title, subTitle, rating)
-        avatar.circle(50).top(10).left(10).bottom(10)
-        self.layout(
-            10,
-            title-10-|,
-            10,
-            subTitle-20-|,
-            10
-        )
-        title.Left == avatar.Right + 20
-        align(lefts: title, subTitle)
-        rating.Left == subTitle.Right
-        rating.width(100).right(10).bottom(10)
+    let favouriteIcon = UIImageView().then{
+        $0.contentMode = .scaleAspectFit
+        $0.height(20).width(20)
     }
     
-    func configure(_ item: Movie) {
-        avatar.image(item.image)
-        title.text = item.title
-        subTitle.text = item.subTitle
-        rating.text = item.rating
+    override func render() {
+        let mView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 200)).then {
+            $0.backgroundColor = .cardBg
+        }
+        mView.sv(favouriteIcon, title, backgroundImage)
+        favouriteIcon.top(20).left(20)
+        title.left(20).bottom(20)
+        backgroundImage.right(0).bottom(0)
+        //        self.layout(
+        //            10,
+        //            favouriteImage-10-|,
+        //            30,
+        //            title-20-|,
+        //            10
+        //        )
+        //        align(lefts: favouriteImage, title)
+ 
+//        mView.sv(backgroundImage)
+//        backgroundImage.height(200).width(300).top(0).left(10).bottom(20).right(0)
+        sv(mView)
+    }
+    
+    func configure(_ item: Flower) {
+        backgroundImage.image(item.imageName)
+        title.text = item.name
+        if(item.isFavourite){
+            favouriteIcon.image("favourite")
+            favouriteIcon.tintColor = .red
+        }else{
+            favouriteIcon.image("unfavourite")
+        }
     }
 }
 

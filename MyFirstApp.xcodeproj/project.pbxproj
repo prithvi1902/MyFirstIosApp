@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B18A23ABB993D0075943EE8 /* Pods_MyFirstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3B2622406304E68C691FB4 /* Pods_MyFirstApp.framework */; };
+		DC14E05422D48CED00F493FC /* Flower.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14E05322D48CED00F493FC /* Flower.swift */; };
 		DC27F12422CE27DF00B4AC31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC27F12322CE27DF00B4AC31 /* LoginController.swift */; };
 		DC8AEDF022CF2A410062AD8A /* DummyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8AEDEF22CF2A410062AD8A /* DummyFile.swift */; };
 		DC8AEDF122CF41C30062AD8A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48D822CDC4320020DBCB /* HomeController.swift */; };
@@ -27,6 +28,7 @@
 		1EEB1F030222A93C65241945 /* Pods-MyFirstApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstApp.release.xcconfig"; path = "Target Support Files/Pods-MyFirstApp/Pods-MyFirstApp.release.xcconfig"; sourceTree = "<group>"; };
 		7B3B2622406304E68C691FB4 /* Pods_MyFirstApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59501B9487EEFAB682D0EBD /* Pods-MyFirstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstApp.debug.xcconfig"; path = "Target Support Files/Pods-MyFirstApp/Pods-MyFirstApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC14E05322D48CED00F493FC /* Flower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flower.swift; sourceTree = "<group>"; };
 		DC27F12322CE27DF00B4AC31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DC8AEDEF22CF2A410062AD8A /* DummyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyFile.swift; sourceTree = "<group>"; };
 		DC8AEDF322CF45040062AD8A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				DC8AEDF322CF45040062AD8A /* Movie.swift */,
+				DC14E05322D48CED00F493FC /* Flower.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			files = (
 				DC8B48D422CDC3B80020DBCB /* Protocols.swift in Sources */,
 				DC8B48D522CDC3B80020DBCB /* Extensions.swift in Sources */,
+				DC14E05422D48CED00F493FC /* Flower.swift in Sources */,
 				DC8B48D122CDC3B80020DBCB /* Scene.swift in Sources */,
 				DC8B48D222CDC3B80020DBCB /* TableView.swift in Sources */,
 				DC8AEDF122CF41C30062AD8A /* HomeController.swift in Sources */,
