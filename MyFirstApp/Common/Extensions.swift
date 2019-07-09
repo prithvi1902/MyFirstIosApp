@@ -105,8 +105,8 @@ extension UIColor {
     static let separatorColor = UIColor.lightGray
     static let lightMaroon = UIColor.init(red: 128, green: 0, blue: 0, alpha: 0.11)
     static let maroon = UIColor.init(red: 128, green: 0, blue: 0, alpha: 0.0)
-    static let lightGreen = UIColor.init(red: 23, green: 129, blue: 23, alpha: 0.23)
-    static let cardBg = UIColor.init(red: 233, green: 235, blue: 240, alpha: 0.0)
+    static let lightGreen = #colorLiteral(red: 0.3928384483, green: 0.5119969845, blue: 0.3961832821, alpha: 1)
+    static let cardBg = #colorLiteral(red: 0.9253652096, green: 0.9254015088, blue: 0.9335429072, alpha: 1)
 }
 
 extension UIView {
