@@ -45,15 +45,11 @@ class HomeController: ViewController {
         $0.placeholderColor(#colorLiteral(red: 0.6251443624, green: 0.7063648105, blue: 0.6984998584, alpha: 1))
         $0.on(.editingChanged) { textField in
             self.viewModel.query(textField.text!)
-            self.tableView.update(List.dataSource(sections: .empty, items: self.viewModel.filteredData.count == 0 ? [self.viewModel.data] : [self.viewModel.filteredData]))
-            //            if(self.viewModel.filteredData.count == 0){
-            //                self.noDataImageView.isHidden = false
-            //                self.tableView.isHidden = true
-            //            } else {
-            //                self.noDataImageView.isHidden = true
-            ////                self.tableView.isHidden = false
-            //                self.tableView.update(List.dataSource(sections: .empty, items: [self.viewModel.filteredData]))
-            //            }
+            if(self.viewModel.filteredData.count == 0 && self.searchTextField.text?.count == 0){
+                self.tableView.update(List.dataSource(sections: .empty, items: [self.viewModel.data]))
+            } else {
+                self.tableView.update(List.dataSource(sections: .empty, items: [self.viewModel.filteredData]))
+            }
         }
     }
     
