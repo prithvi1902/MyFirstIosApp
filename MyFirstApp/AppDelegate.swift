@@ -20,13 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.appLaunched()
         }
         #endif
-        appLaunched()
+        appLaunched() 
         return true
     }
     
     func appLaunched() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: UIViewController.controller(.home))
+        window?.rootViewController = UINavigationController(rootViewController: UIViewController.controller(.home)).then {
+            $0.isNavigationBarHidden = true
+        }
         window?.makeKeyAndVisible()
     }
 }

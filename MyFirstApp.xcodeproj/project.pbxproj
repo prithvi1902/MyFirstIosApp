@@ -10,6 +10,7 @@
 		8B18A23ABB993D0075943EE8 /* Pods_MyFirstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3B2622406304E68C691FB4 /* Pods_MyFirstApp.framework */; };
 		DC14E05422D48CED00F493FC /* Flower.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC14E05322D48CED00F493FC /* Flower.swift */; };
 		DC27F12422CE27DF00B4AC31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC27F12322CE27DF00B4AC31 /* LoginController.swift */; };
+		DC5868B422D5AA3800E87DFA /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5868B322D5AA3800E87DFA /* Tips.swift */; };
 		DC8AEDF022CF2A410062AD8A /* DummyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8AEDEF22CF2A410062AD8A /* DummyFile.swift */; };
 		DC8AEDF122CF41C30062AD8A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48D822CDC4320020DBCB /* HomeController.swift */; };
 		DC8AEDF422CF45040062AD8A /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8AEDF322CF45040062AD8A /* Movie.swift */; };
@@ -22,6 +23,7 @@
 		DC8B48D422CDC3B80020DBCB /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48CE22CDC3B80020DBCB /* Protocols.swift */; };
 		DC8B48D522CDC3B80020DBCB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48CF22CDC3B80020DBCB /* Extensions.swift */; };
 		DC8B48D622CDC3B80020DBCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48D022CDC3B80020DBCB /* ViewController.swift */; };
+		DC8D45E022D4D335008781F0 /* FlowerDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D45DF22D4D335008781F0 /* FlowerDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		C59501B9487EEFAB682D0EBD /* Pods-MyFirstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstApp.debug.xcconfig"; path = "Target Support Files/Pods-MyFirstApp/Pods-MyFirstApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC14E05322D48CED00F493FC /* Flower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flower.swift; sourceTree = "<group>"; };
 		DC27F12322CE27DF00B4AC31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		DC5868B322D5AA3800E87DFA /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		DC8AEDEF22CF2A410062AD8A /* DummyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyFile.swift; sourceTree = "<group>"; };
 		DC8AEDF322CF45040062AD8A /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		DC8B48B622CDBDD90020DBCB /* MyFirstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFirstApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,7 @@
 		DC8B48CF22CDC3B80020DBCB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DC8B48D022CDC3B80020DBCB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DC8B48D822CDC4320020DBCB /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		DC8D45DF22D4D335008781F0 /* FlowerDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 			children = (
 				DC8AEDF322CF45040062AD8A /* Movie.swift */,
 				DC14E05322D48CED00F493FC /* Flower.swift */,
+				DC5868B322D5AA3800E87DFA /* Tips.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 		DC8B48B822CDBDD90020DBCB /* MyFirstApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC8D45DF22D4D335008781F0 /* FlowerDetailController.swift */,
 				DC8AEDF222CF44B70062AD8A /* Data */,
 				DC8AEDEF22CF2A410062AD8A /* DummyFile.swift */,
 				DC27F12322CE27DF00B4AC31 /* LoginController.swift */,
@@ -245,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC8D45E022D4D335008781F0 /* FlowerDetailController.swift in Sources */,
 				DC8B48D422CDC3B80020DBCB /* Protocols.swift in Sources */,
 				DC8B48D522CDC3B80020DBCB /* Extensions.swift in Sources */,
 				DC14E05422D48CED00F493FC /* Flower.swift in Sources */,
@@ -255,6 +262,7 @@
 				DC27F12422CE27DF00B4AC31 /* LoginController.swift in Sources */,
 				DC8B48D622CDC3B80020DBCB /* ViewController.swift in Sources */,
 				DC8B48D322CDC3B80020DBCB /* CollectionView.swift in Sources */,
+				DC5868B422D5AA3800E87DFA /* Tips.swift in Sources */,
 				DC8AEDF422CF45040062AD8A /* Movie.swift in Sources */,
 				DC8B48BA22CDBDD90020DBCB /* AppDelegate.swift in Sources */,
 			);

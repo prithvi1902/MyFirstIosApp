@@ -67,6 +67,7 @@ class CollectionView<Section,Item>: UICollectionView, UICollectionViewDataSource
         self.width = width
         self.height = height
         self.isSquare = isSquare
+        backgroundColor = .clear
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

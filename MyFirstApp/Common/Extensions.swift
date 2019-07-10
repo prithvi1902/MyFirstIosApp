@@ -57,12 +57,12 @@ extension UINavigationController {
         CATransaction.commit()
     }
     
-    func popToScene(_ scene: UIViewController.Scene, animated: Bool) {
-        guard let viewController = viewControllers.filter({ ($0 as? ViewController)?.scene == scene }).last else {
-            return
-        }
-        popToViewController(viewController, animated: animated)
-    }
+//    func popToScene(_ scene: UIViewController.Scene, animated: Bool) {
+//        guard let viewController = viewControllers.filter({ ($0 as? ViewController)?.scene == scene }).last else {
+//            return
+//        }
+//        popToViewController(viewController, animated: animated)
+//    }
 }
 
 extension UITableView {
@@ -107,6 +107,8 @@ extension UIColor {
     static let maroon = UIColor.init(red: 128, green: 0, blue: 0, alpha: 0.0)
     static let lightGreen = #colorLiteral(red: 0.3928384483, green: 0.5119969845, blue: 0.3961832821, alpha: 1)
     static let cardBg = #colorLiteral(red: 0.9253652096, green: 0.9254015088, blue: 0.9335429072, alpha: 1)
+    static let darkGreen = #colorLiteral(red: 0.195589751, green: 0.3402995169, blue: 0.1023360714, alpha: 1)
+    static let offGreen = #colorLiteral(red: 0.6558721417, green: 0.7449510195, blue: 0.7519981888, alpha: 1)
 }
 
 extension UIView {
@@ -262,12 +264,15 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
     }
     
-    func style(_ text: String, font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural) {
+    func style(_ text: String, font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural, isMultiline: Bool = false) {
         self.text = text
         self.font = font
         textColor = color
         textAlignment = alignment
         backgroundColor = bgColor
+        if isMultiline {
+            multiLine()
+        }
     }
 }
 
@@ -285,6 +290,14 @@ extension UITextField {
         backgroundColor = bgColor
         self.placeholder = placeHolder
     }
+    
+    func placeholderColor(_ color: UIColor){
+        var placeholderText = ""
+        if self.placeholder != nil{
+            placeholderText = self.placeholder!
+        }
+        self.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [.foregroundColor : color])
+    }
 }
 
 extension UIButton {
@@ -297,6 +310,26 @@ extension UIButton {
         setTitleColor(color, for: .normal)
         backgroundColor = bgColor
         border(.orange, width: 1.0)
+    }
+    
+    func image(_ name: String, tint: UIColor?) {
+        if let tint = tint {
+            setImage(UIImage(named: name)?.withRenderingMode(.alwaysTemplate), for: .normal)
+            tintColor = tint
+        } else {
+            image(name)
+        }
+    }
+}
+
+extension UIImageView {
+    func image(_ name: String, tint: UIColor?) {
+        if let tint = tint {
+            image = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
+            tintColor = tint
+        } else {
+            image(name)
+        }
     }
 }
 

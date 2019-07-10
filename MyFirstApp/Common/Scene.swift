@@ -13,8 +13,8 @@ extension UIViewController {
         case root, push, present, child, popToRootAndPresent, dismissAndPush, overlay
     }
     
-    enum Scene: Equatable {
-        case login, home, movieDetails
+    enum Scene {
+        case login, home, flowerDetails(Flower)
     }
     
     func navigate(to scene: Scene, transition: Transition, delegate: Delegate? = nil) {
@@ -51,8 +51,8 @@ extension UIViewController {
             return LoginController()
         case .home:
             return HomeController()
-        case .movieDetails:
-            return MovieDetails()
+        case let .flowerDetails(flower):
+            return FlowerDetailController(flower)
         }
     }
     
