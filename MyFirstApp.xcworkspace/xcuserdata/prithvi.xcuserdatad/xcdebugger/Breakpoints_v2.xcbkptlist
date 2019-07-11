@@ -9,153 +9,30 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyFirstApp/FlowerDetailController.swift"
-            timestampString = "584455221.951003"
+            filePath = "MyFirstApp/HomeController.swift"
+            timestampString = "584517269.570637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "favouriteContainer"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "backgroundImage"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyFirstApp/HomeController.swift"
-            timestampString = "584455221.9511091"
+            timestampString = "584517269.5711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "configureUI()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyFirstApp/HomeController.swift"
-            timestampString = "584455221.951226"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "query(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "MyFirstApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449105.822024"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "39">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (MyFirstApp.Flower) -&gt; Swift.Bool in MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "MyFirstApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449105.824797"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "eval101.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449105.827593"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "39">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (MyFirstApp.Flower) -&gt; Swift.Bool in MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "eval101.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449105.830184"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "eval102.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449387.962801"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "47">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "eval103.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449466.1645629"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "39">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyFirstApp.HomeViewModel.query(Swift.String) -&gt; ()"
-                  moduleName = "eval104.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prithvi/XCodeProjects/MyFirstIosApp/MyFirstApp/HomeController.swift"
-                  timestampString = "584449584.206049"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
