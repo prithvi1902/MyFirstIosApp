@@ -2,108 +2,39 @@
 //  MarvelCharacter.swift
 //  MyFirstApp
 //
-//  Created by Prithvi on 11/07/19.
+//  Created by Prithvi on 12/07/19.
 //  Copyright © 2019 Prithvi. All rights reserved.
 //
 
-import ws
 import Arrow
-import then
-import Keys
-import CryptoSwift
 
-protocol ModelType: ArrowParsable {
-    init()
-}
-
-enum NetworkError: Error {
-    case parse
-}
-
-enum MethodType {
-    case get, post
-}
-
-enum MarvelApi {
-    case allCharacters
-    case singleCharacter(Int)
-    case characterComics(Int)
-    case characterEvents(Int)
-    case characterSeries(Int)
-    case characterStories(Int)
+class MarvelCharacter: ModelType {
     
-    var endpoint: String {
-        switch self {
-        case .allCharacters:
-            return "/v1/public/characters"
-        case let .singleCharacter(id):
-            return "/v1/public/characters/\(id)"
-        case let .characterComics(id):
-            return "/v1/public/characters/\(id)/comics"
-        case .characterEvents(let id):
-            return "/v1/public/characters/\(id)/events"
-        case .characterSeries(let id):
-            return "/v1/public/characters/\(id)/series"
-        case .characterStories(let id):
-            return "/v1/public/characters/\(id)/stories"
-        }
-    }
-}
-
-struct Api {
+    required init() {}
     
-    static let baseUrl = "https://gateway.marvel.com"
-    
-    static func service<T: ModelType>(_ marvelApi: MarvelApi, method: MethodType = .get, params: Params = Params()) -> Promise<[T]> {
-        let webService = WS(Api.baseUrl)
-        webService.logLevels = .debug
-        
-        switch method {
-        case .get:
-            return Promise { resolve, reject in
-                webService.get(marvelApi.endpoint, params: parameters(params)).then { (json: JSON) in
-                    guard let jsonData = json["data"]?["results"]?.collection else {
-                        reject(NetworkError.parse)
-                        return
-                    }
-                    resolve(jsonData.compactMap { data in
-                        var model = T.init()
-                        model.deserialize(data)
-                        return model
-                    })
-                    }.onError { (error) in
-                        reject(error)
-                }
-            }
-        case .post:
-            return Promise { resolve, reject in
-                webService.post(marvelApi.endpoint, params: parameters(params)).then { (json: JSON) in
-                    guard let jsonData = json["data"]?["results"]?.collection else {
-                        reject(NetworkError.parse)
-                        return
-                    }
-                    resolve(jsonData.compactMap { data in
-                        var model = T.init()
-                        model.deserialize(data)
-                        return model
-                    })
-                    }.onError { (error) in
-                        reject(error)
-                }
-            }
-        }
+    var characterId = -1
+    var name = ""
+    var desc = ""
+    var imagePath = ""
+    var imageExtension = ""
+    var isFavourite: Bool = false
+    var thumbnail: String {
+        return imagePath + "." + imageExtension
     }
     
-    private static func parameters(_ params: Params) -> Params {
-        let keys = MyFirstAppKeys()
-        let privateKey = keys.marvelPrivateKey
-        let apiKey = keys.marvelApiKey
-        let timeStamp = Date().timeIntervalSince1970.description
-        var parameters = Params()
-        parameters["apikey"] = apiKey
-        parameters["ts"] = timeStamp
-        parameters["hash"] = "\(timeStamp)\(privateKey)\(apiKey)".md5()
-        parameters += params
-        return parameters
+    func deserialize(_ json: JSON) {
+        characterId <-- json["id"]
+        name <-- json["name"]
+        desc <-- json["description"]
+        imagePath <-- json["thumbnail.path"]
+        imageExtension <-- json["thumbnail.extension"]
+    }
+    
+    var favImage: String {
+        return isFavourite ? "favorite" : "unfavorite"
+    }
+    
+    var favTint: UIColor? {
+        return isFavourite ? UIColor.red : nil
     }
 }

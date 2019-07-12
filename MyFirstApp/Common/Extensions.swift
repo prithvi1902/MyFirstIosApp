@@ -336,7 +336,7 @@ extension UIImageView {
     func load(_ path: String) {
         guard let url = URL(string: path) else { return }
         kf.indicatorType = .activity
-        kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        kf.setImage(with: url, placeholder: UIImage(named: "marvelLogo"))
     }
 }
 
