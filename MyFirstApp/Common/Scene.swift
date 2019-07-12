@@ -14,7 +14,7 @@ extension UIViewController {
     }
     
     enum Scene {
-        case login, home, flowerDetails(Flower)
+        case login, home, flowerDetails(Flower), marvel
     }
     
     func navigate(to scene: Scene, transition: Transition, delegate: Delegate? = nil) {
@@ -53,6 +53,8 @@ extension UIViewController {
             return HomeController()
         case let .flowerDetails(flower):
             return FlowerDetailController(flower)
+        case .marvel:
+            return MarvelController()
         }
     }
     

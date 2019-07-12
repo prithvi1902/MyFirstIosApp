@@ -8,6 +8,7 @@
 
 import UIKit
 import Stevia
+import Kingfisher
 
 extension NSObject {
     func inject(_ callback: @escaping () -> Void) {
@@ -331,6 +332,12 @@ extension UIImageView {
             image(name)
         }
     }
+    
+    func load(_ path: String) {
+        guard let url = URL(string: path) else { return }
+        kf.indicatorType = .activity
+        kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+    }
 }
 
 extension UIStackView {
@@ -350,5 +357,11 @@ extension String {
 extension Optional where Wrapped == Bool {
     var value: Bool {
         return self ?? false
+    }
+}
+
+extension Dictionary {
+    static func +=(lhs: inout [Key: Value], rhs: [Key: Value]) {
+        rhs.forEach({ lhs[$0] = $1})
     }
 }

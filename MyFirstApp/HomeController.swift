@@ -82,6 +82,12 @@ class HomeController: ViewController {
         tableView.right(10).bottom(0).left(30)
         noDataImageView.Top == imageView.Bottom
         noDataImageView.top(0).right(0).bottom(0).left(0).centerHorizontally().height(100).width(100)
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }     
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, error == nil else { return }
+            guard let posts = try? JSONDecoder().decode([Post].self, from: data) else { return }
+            print(posts)
+        }.resume()
     }
     
     override func configureUI() {
