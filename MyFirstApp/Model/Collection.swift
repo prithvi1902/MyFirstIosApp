@@ -37,6 +37,8 @@ struct Image: ModelType {
 
 extension MarvelCollectable {
     
+//    var imageUrl = self.images.imagePath
+    
     mutating func parse(_ json: JSON) {
         images <-- json["images"]
         id <-- json["id"]
