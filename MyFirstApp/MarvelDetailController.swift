@@ -145,7 +145,7 @@ class ComicCollectionViewCell: CollectionViewCell, Configurable {
     }
     
     func configure(_ item: Comics) {
-        comicImageView.load("\(item.images[0].imagePath).\(item.images[0].imageExtension)")
+        comicImageView.load(item.imageUrl)
         comicTitle.text = item.title
     }
 }

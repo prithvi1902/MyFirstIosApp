@@ -101,7 +101,7 @@ class MarvelCollectionCell: CollectionViewCell, Configurable {
     }
     
     func configure(_ item: Image) {
-        collectionImageView.load("\(item.imagePath).\(item.imageExtension)")
+        collectionImageView.load(item.imageUrl)
     }
 }
 

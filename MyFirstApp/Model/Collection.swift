@@ -28,6 +28,9 @@ protocol MarvelCollectable {
 struct Image: ModelType {
     var imagePath = ""
     var imageExtension = ""
+    var imageUrl: String {
+        return imagePath + "." + imageExtension
+    }
     
     mutating func deserialize(_ json: JSON) {
         imagePath <-- json["path"]
@@ -36,8 +39,14 @@ struct Image: ModelType {
 }
 
 extension MarvelCollectable {
+    var imageUrl: String {
+        guard let images = images.first else { return "" }
+        return images.imagePath + "." + images.imageExtension
+    }
     
-//    var imageUrl = self.images.imagePath
+    var thumbnailUrl: String {
+        return thumbnail.imagePath + "." + thumbnail.imageExtension
+    }
     
     mutating func parse(_ json: JSON) {
         images <-- json["images"]
