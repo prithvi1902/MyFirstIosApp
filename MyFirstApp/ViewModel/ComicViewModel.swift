@@ -16,12 +16,12 @@ class ComicViewModel {
     
     var characterId = -1
     
-    init(characterId: Int) {
+    init(_ characterId: Int) {
         self.characterId = characterId
     }
     
-//    func fetchAllComics() -> Promise<[Collection]> {
-//        guard characterId != -1 else { return Promise.reject(ComicError.invalidId) }
-//        return Api.service(.comicsUrl(characterId))
-//    }
+    func fetchAllComics() -> Promise<[Comics]> {
+        guard characterId != -1 else { return Promise.reject(ComicError.invalidId) }
+        return Api.service(.comicsUrl(characterId))
+    }
 }

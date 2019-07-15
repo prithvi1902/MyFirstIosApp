@@ -20,27 +20,37 @@ struct MarvelCollectionType {
 
 protocol MarvelCollectable {
     var id: Int { get set }
-    var imagePath: String { get set }
-    var imageExtension: String { get set }
+    var title: String { get set }
+    var images: [Image] { get set }
+    var thumbnail: Image { get set }
+}
+
+struct Image: ModelType {
+    var imagePath = ""
+    var imageExtension = ""
+    
+    mutating func deserialize(_ json: JSON) {
+        imagePath <-- json["path"]
+        imageExtension <-- json["extension"]
+    }
 }
 
 extension MarvelCollectable {
-    var thumbnail: String {
-        return imagePath + "." + imageExtension
-    }
     
     mutating func parse(_ json: JSON) {
-        imagePath <-- json["images.path"]
-        imageExtension <-- json["images.extension"]
+        images <-- json["images"]
         id <-- json["id"]
+        title <-- json["title"]
+        thumbnail <-- json["thumbnail"]
     }
 }
 
 struct Comics: MarvelCollectable, ModelType {
     var id = -1
-    var imagePath = ""
-    var imageExtension = ""
     var desc = ""
+    var title = ""
+    var images = [Image(imagePath: "", imageExtension: "")]
+    var thumbnail = Image(imagePath: "", imageExtension: "")
     
     mutating func deserialize(_ json: JSON) {
         parse(json)
@@ -50,8 +60,9 @@ struct Comics: MarvelCollectable, ModelType {
 
 struct Series: MarvelCollectable, ModelType {
     var id = -1
-    var imagePath = ""
-    var imageExtension = ""
+    var title = ""
+    var images = [Image(imagePath: "", imageExtension: "")]
+    var thumbnail = Image(imagePath: "", imageExtension: "")
     
     mutating func deserialize(_ json: JSON) {
         parse(json)
@@ -77,6 +88,6 @@ class MarvelCollectionViewModel {
         let comic: Promise<[Comics]> = Api.service(.comicsUrl(characterId))
 //        let series: Promise<[Series]> = Api.service(.comicsUrl(characterId))
         comic.then { [weak self] in self?.data[MarvelCollection.comics.rawValue].items = $0 }
-        
+        print("DATA: \(data)")
     }
 }

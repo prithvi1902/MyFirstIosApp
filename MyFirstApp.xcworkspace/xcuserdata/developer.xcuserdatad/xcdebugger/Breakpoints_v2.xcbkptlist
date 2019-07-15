@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyFirstApp/Model/Collection.swift"
+            timestampString = "584850777.776569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyFirstApp.MarvelCollectionViewModel.fetch() -&gt; ()"
+                  moduleName = "MyFirstApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Prithvi/MyFirstIosApp/MyFirstApp/Model/Collection.swift"
+                  timestampString = "584816312.7727619"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "223">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;MyFirstApp.Comics&gt;) -&gt; Swift.Optional&lt;()&gt; in MyFirstApp.MarvelCollectionViewModel.fetch() -&gt; ()"
+                  moduleName = "MyFirstApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Prithvi/MyFirstIosApp/MyFirstApp/Model/Collection.swift"
+                  timestampString = "584816312.7753249"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyFirstApp/Model/Collection.swift"
+            timestampString = "584850777.776667"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyFirstApp.MarvelCollectionViewModel.fetch() -&gt; ()"
+                  moduleName = "MyFirstApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Prithvi/MyFirstIosApp/MyFirstApp/Model/Collection.swift"
+                  timestampString = "584816312.78302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "223">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;MyFirstApp.Comics&gt;) -&gt; Swift.Optional&lt;()&gt; in MyFirstApp.MarvelCollectionViewModel.fetch() -&gt; ()"
+                  moduleName = "MyFirstApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Prithvi/MyFirstIosApp/MyFirstApp/Model/Collection.swift"
+                  timestampString = "584816312.786222"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

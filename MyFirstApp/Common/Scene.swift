@@ -14,7 +14,7 @@ extension UIViewController {
     }
     
     enum Scene {
-        case marvel, marvelDetails(MarvelCharacter)
+        case marvel, marvelDetails(MarvelCharacter), marvelCollection(Comics)
     }
     
     func navigate(to scene: Scene, transition: Transition, delegate: Delegate? = nil) {
@@ -51,6 +51,8 @@ extension UIViewController {
             return MarvelController()
         case let .marvelDetails(marvelCharacter):
             return MarvelDetailController(marvelCharacter)
+        case let .marvelCollection(marvelCollection):
+            return MarvelCollectionController(marvelCollection)
         }
     }
     
