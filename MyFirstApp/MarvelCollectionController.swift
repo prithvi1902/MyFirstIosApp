@@ -11,9 +11,9 @@ import Stevia
 
 class MarvelCollectionController: ViewController {
     
-    var collectionData: Comics
+    var collectionData: MarvelCollectable
     
-    init(_ collectionData: Comics) {
+    init(_ collectionData: MarvelCollectable) {
         self.collectionData = collectionData
         print("Comic: \(collectionData)")
         super.init(nibName: nil, bundle: nil)
@@ -28,7 +28,6 @@ class MarvelCollectionController: ViewController {
         $0.onTap{ [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }
-        $0.size(30)
     }
     
     lazy var marvelCollectionView = CollectionView<Any, Image>(.horizontal, widthFactor: 1.0, height: 300).then {
@@ -36,6 +35,7 @@ class MarvelCollectionController: ViewController {
         $0.configureCell = {
             $0.dequeueCell(MarvelCollectionCell.self, at: $1, with: $2)
         }
+        $0.didScrollToIndex = { [weak self] in self?.pageIndicators.currentPage = $0.row }
         $0.updateItems(List.dataSource(sections: .empty, items: [collectionData.images]))
         $0.isPagingEnabled = true
         $0.showsHorizontalScrollIndicator = false
@@ -51,7 +51,7 @@ class MarvelCollectionController: ViewController {
     }
     
     lazy var comicDescriptionLabel = UILabel().then {
-        $0.style(collectionData.desc, isMultiline: true)
+        $0.style(collectionData.comic?.desc, isMultiline: true)
         $0.textAlignment = .justified
     }
     
@@ -66,7 +66,7 @@ class MarvelCollectionController: ViewController {
         view.sv(backButton, marvelCollectionView, pageIndicators, comicDescContainer.sv(comicTitleLabel, comicDescriptionLabel))
         view.layout(
             50,
-            |-20-backButton,
+            |-20-backButton.size(30),
             20,
             |-10-marvelCollectionView-10-|,
             10,
@@ -92,7 +92,6 @@ class MarvelCollectionCell: CollectionViewCell, Configurable {
         $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 20.0
         $0.clipsToBounds = true
-//        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     override func render() {

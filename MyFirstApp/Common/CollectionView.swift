@@ -42,6 +42,7 @@ class CollectionView<Section,Item>: UICollectionView, UICollectionViewDataSource
     var didSelect: ((CollectionView<Section,Item>, IndexPath, Item) -> Void)?
     var didDeSelect: ((CollectionView<Section,Item>, IndexPath, Item) -> Void)?
     var configureCell: ((CollectionView<Section,Item>, IndexPath, Item) -> UICollectionViewCell)?
+    var didScrollToIndex: ((IndexPath) -> Void)?
     
     convenience init(_ scrollDirection: UICollectionView.ScrollDirection,
                      lineSpacing: CGFloat = 0,
@@ -113,6 +114,15 @@ class CollectionView<Section,Item>: UICollectionView, UICollectionViewDataSource
     func updateItems(_ items: [List<Section,Item>]) {
         data = items
         reloadData()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.tag == 0 {
+            let center = CGPoint(x: scrollView.contentOffset.x + scrollView.frame.width/2, y: scrollView.frame.height/2)
+            if let index = self.indexPathForItem(at: center) {
+                didScrollToIndex?(index)
+            }
+        }
     }
 }
 

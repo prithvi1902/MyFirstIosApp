@@ -265,7 +265,7 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
     }
     
-    func style(_ text: String, font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural, isMultiline: Bool = false) {
+    func style(_ text: String? = "", font: UIFont = .title, color: UIColor = .black, bgColor: UIColor = .clear, alignment: NSTextAlignment = .natural, isMultiline: Bool = false) {
         self.text = text
         self.font = font
         textColor = color

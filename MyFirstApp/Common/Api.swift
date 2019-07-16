@@ -27,6 +27,8 @@ enum MethodType {
 enum MarvelApi {
     case allCharacters
     case comicsUrl(Int)
+    case seriesUrl(Int)
+    case storiesUrl(Int)
     
     var endpoint: String {
         switch self {
@@ -34,6 +36,10 @@ enum MarvelApi {
             return "/v1/public/characters"
         case let .comicsUrl(id):
             return "/v1/public/characters/\(id)/comics"
+        case let .seriesUrl(id):
+            return "/v1/public/characters/\(id)/series"
+        case let .storiesUrl(id):
+            return "/v1/public/characters/\(id)/stories"
         }
     }
 }

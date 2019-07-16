@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B18A23ABB993D0075943EE8 /* Pods_MyFirstApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3B2622406304E68C691FB4 /* Pods_MyFirstApp.framework */; };
 		8B99EBE722DB7868009F4DE9 /* MarvelCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B99EBE622DB7868009F4DE9 /* MarvelCollectionController.swift */; };
+		DC2B41B322DCAD9300453230 /* MarvelCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B41B222DCAD9300453230 /* MarvelCollectionViewModel.swift */; };
 		DC8B48BA22CDBDD90020DBCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B48B922CDBDD90020DBCB /* AppDelegate.swift */; };
 		DC8B48C122CDBDDA0020DBCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8B48C022CDBDDA0020DBCB /* Assets.xcassets */; };
 		DC8B48C422CDBDDA0020DBCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8B48C222CDBDDA0020DBCB /* LaunchScreen.storyboard */; };
@@ -21,8 +22,7 @@
 		DCA8048322D850160024834F /* MarvelDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048222D850160024834F /* MarvelDetailController.swift */; };
 		DCA8048622D886B80024834F /* MarvelCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048522D886B80024834F /* MarvelCharacter.swift */; };
 		DCA8048922D8873A0024834F /* MarvelCharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048822D8873A0024834F /* MarvelCharacterViewModel.swift */; };
-		DCA8048B22D88F740024834F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048A22D88F740024834F /* Collection.swift */; };
-		DCA8048D22D898E20024834F /* ComicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048C22D898E20024834F /* ComicViewModel.swift */; };
+		DCA8048B22D88F740024834F /* MarvelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8048A22D88F740024834F /* MarvelCollection.swift */; };
 		DCCC0A1C22D71F4B00EE43AE /* MarvelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCC0A1B22D71F4B00EE43AE /* MarvelController.swift */; };
 		DCCC0A1E22D7364000EE43AE /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCC0A1D22D7364000EE43AE /* Api.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +32,7 @@
 		7B3B2622406304E68C691FB4 /* Pods_MyFirstApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B99EBE622DB7868009F4DE9 /* MarvelCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCollectionController.swift; sourceTree = "<group>"; };
 		C59501B9487EEFAB682D0EBD /* Pods-MyFirstApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstApp.debug.xcconfig"; path = "Target Support Files/Pods-MyFirstApp/Pods-MyFirstApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC2B41B222DCAD9300453230 /* MarvelCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCollectionViewModel.swift; sourceTree = "<group>"; };
 		DC8B48B622CDBDD90020DBCB /* MyFirstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFirstApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8B48B922CDBDD90020DBCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC8B48C022CDBDDA0020DBCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,8 +47,7 @@
 		DCA8048222D850160024834F /* MarvelDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelDetailController.swift; sourceTree = "<group>"; };
 		DCA8048522D886B80024834F /* MarvelCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacter.swift; sourceTree = "<group>"; };
 		DCA8048822D8873A0024834F /* MarvelCharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharacterViewModel.swift; sourceTree = "<group>"; };
-		DCA8048A22D88F740024834F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		DCA8048C22D898E20024834F /* ComicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewModel.swift; sourceTree = "<group>"; };
+		DCA8048A22D88F740024834F /* MarvelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCollection.swift; sourceTree = "<group>"; };
 		DCCC0A1B22D71F4B00EE43AE /* MarvelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelController.swift; sourceTree = "<group>"; };
 		DCCC0A1D22D7364000EE43AE /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA8048522D886B80024834F /* MarvelCharacter.swift */,
-				DCA8048A22D88F740024834F /* Collection.swift */,
+				DCA8048A22D88F740024834F /* MarvelCollection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				DCA8048822D8873A0024834F /* MarvelCharacterViewModel.swift */,
-				DCA8048C22D898E20024834F /* ComicViewModel.swift */,
+				DC2B41B222DCAD9300453230 /* MarvelCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -268,14 +268,14 @@
 				DCA8048322D850160024834F /* MarvelDetailController.swift in Sources */,
 				DC8B48D522CDC3B80020DBCB /* Extensions.swift in Sources */,
 				DCA8048922D8873A0024834F /* MarvelCharacterViewModel.swift in Sources */,
-				DCA8048B22D88F740024834F /* Collection.swift in Sources */,
+				DCA8048B22D88F740024834F /* MarvelCollection.swift in Sources */,
 				DCCC0A1E22D7364000EE43AE /* Api.swift in Sources */,
 				DC8B48D122CDC3B80020DBCB /* Scene.swift in Sources */,
+				DC2B41B322DCAD9300453230 /* MarvelCollectionViewModel.swift in Sources */,
 				8B99EBE722DB7868009F4DE9 /* MarvelCollectionController.swift in Sources */,
 				DC8B48D222CDC3B80020DBCB /* TableView.swift in Sources */,
 				DC8B48D622CDC3B80020DBCB /* ViewController.swift in Sources */,
 				DC8B48D322CDC3B80020DBCB /* CollectionView.swift in Sources */,
-				DCA8048D22D898E20024834F /* ComicViewModel.swift in Sources */,
 				DC8B48BA22CDBDD90020DBCB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

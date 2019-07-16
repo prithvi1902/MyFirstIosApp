@@ -14,7 +14,7 @@ extension UIViewController {
     }
     
     enum Scene {
-        case marvel, marvelDetails(MarvelCharacter), marvelCollection(Comics)
+        case marvel, marvelDetails(MarvelCharacter), marvelCollection(MarvelCollectable)
     }
     
     func navigate(to scene: Scene, transition: Transition, delegate: Delegate? = nil) {

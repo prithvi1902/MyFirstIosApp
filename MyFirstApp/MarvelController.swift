@@ -45,6 +45,7 @@ class MarvelController: ViewController {
             self?.searchTextField.text = ""
             self?.navigate(to: .marvelDetails(item), transition: .push)
         }
+        $0.separatorStyle = .none
     }
     
     let activityIndicator = UIActivityIndicatorView().then{
@@ -88,7 +89,6 @@ class MarvelCharacterCollectionCell: TableViewCell, Configurable {
     
     let backgroundImage = UIImageView().then {
         $0.contentMode = .scaleAspectFill
-        $0.height(200)
         $0.layer.cornerRadius = 25
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = true
@@ -101,7 +101,6 @@ class MarvelCharacterCollectionCell: TableViewCell, Configurable {
     
     lazy var favouriteIcon = UIButton().then{
         $0.contentMode = .scaleAspectFit
-        $0.height(30).width(30)
         $0.onTap { [weak self] in
             self?.marvelCharacter?.isFavourite.toggle()
             guard let marvelCharacter = self?.marvelCharacter else { return }
@@ -109,18 +108,10 @@ class MarvelCharacterCollectionCell: TableViewCell, Configurable {
         }
     }
     
-    let cardHolder = UIView().then {
-        $0.backgroundColor = .cardBg
-        $0.height(200)
-        $0.layer.cornerRadius = 25
-        $0.clipsToBounds = true
-        $0.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMaxYCorner]
-    }
-    
     override func render() {
         sv(backgroundImage.sv(favouriteIcon, nameLabel))
-        backgroundImage.left(0).right(0).top(0).bottom(20)
-        favouriteIcon.top(20).left(20)
+        backgroundImage.left(0).right(0).top(0).bottom(20).height(200)
+        favouriteIcon.top(20).left(20).size(30)
         nameLabel.left(20).bottom(20)
     }
     

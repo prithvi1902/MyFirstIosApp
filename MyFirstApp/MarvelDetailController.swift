@@ -13,7 +13,7 @@ class MarvelDetailController: ViewController {
     
     let marvelCharacter: MarvelCharacter
     
-    lazy var viewModel = ComicViewModel(marvelCharacter.characterId)
+    lazy var viewModel = MarvelCollectionViewModel(marvelCharacter.characterId)
     
     init(_ marvelCharacter: MarvelCharacter) {
         self.marvelCharacter = marvelCharacter
@@ -29,12 +29,10 @@ class MarvelDetailController: ViewController {
         $0.onTap{ [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }
-        $0.size(30)
     }
     
-    lazy var favouriteIcon = UIButton().then{
-        $0.contentMode = .scaleAspectFit
-        $0.height(30).width(30)
+    lazy var favouriteIcon = UIButton().then {
+        $0.contentMode = .scaleAspectFill
         $0.image(marvelCharacter.favImage, tint: marvelCharacter.favTint)
         $0.onTap { [weak self] in
             self?.marvelCharacter.isFavourite.toggle()
@@ -42,24 +40,24 @@ class MarvelDetailController: ViewController {
             $0.image(marvelCharacter.favImage, tint: marvelCharacter.favTint)
         }
     }
-
+    
     lazy var marvelTitleLabel = UILabel().then {
         $0.style(marvelCharacter.name, font: .boldSystemFont(ofSize: 24))
     }
     
     lazy var marvelImageView = UIImageView().then {
         $0.load(marvelCharacter.thumbnail)
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 40.0
         $0.clipsToBounds = true
         $0.isUserInteractionEnabled = true
-        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
     }
     
     let marvelDescContainer = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         $0.layer.cornerRadius = 40.0
-        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.maskedCorners = [.layerMinXMinYCorner]
     }
     
     lazy var marvelDescLabel = UILabel().then {
@@ -67,173 +65,104 @@ class MarvelDetailController: ViewController {
         $0.textAlignment = .justified
     }
     
-    let comicTitleLabel = UILabel().then {
-        $0.style("Comics", font: .boldSystemFont(ofSize: 24))
-    }
-    
-    lazy var comicCollectionView = CollectionView<Any, Comics>(.horizontal, lineSpacing: 20,  widthFactor: 0.4, height: 220).then {
-        $0.register(ComicCollectionViewCell.self)
+    lazy var marvelDetailTableView = TableView<MarvelCollection, MarvelCollectionType>().then {
+        $0.bounces = false
+        $0.register(MarvelDetailTableViewCell.self)
         $0.configureCell = {
-            $0.dequeueCell(ComicCollectionViewCell.self, at: $1, with: $2)
+            $0.dequeueCell(MarvelDetailTableViewCell.self, at: $1, with: $2).then {
+                $0.onSelect = { [weak self] in
+                    self?.navigate(to: .marvelCollection($0), transition: .push)
+                }
+            }
         }
-        $0.contentInset.left = 15
-        $0.showsHorizontalScrollIndicator = false
-        $0.isPagingEnabled = true
-        $0.didSelect = { [weak self] _, _, item in
-            self?.navigate(to: .marvelCollection(item), transition: .push)
-        }
+        $0.headerHeight = { _ in 40 }
+        $0.separatorStyle = .none
+        $0.header = { _, _, item in UILabel().then { $0.style(item.title) }}
+        $0.update(List.dataSource(sections: [MarvelCollection.comics], items: [viewModel.data]))
     }
     
     override func render() {
-        view.sv(backButton, marvelImageView.sv(favouriteIcon, marvelTitleLabel), marvelDescContainer.sv(marvelDescLabel, comicTitleLabel, comicCollectionView))
+        view.sv(backButton, marvelImageView.sv(favouriteIcon, marvelTitleLabel), marvelDescContainer.sv(marvelDescLabel, marvelDetailTableView))
         view.layout(
             50,
-            |-20-backButton,
+            |-20-backButton.size(30),
             10,
-            |-10-marvelImageView-10-|,
-            10,
+            |-10-marvelImageView.height(200)-10-|,
+            0,
             |-10-marvelDescContainer-10-|,
-            >=10
+            0
         )
-        marvelImageView.heightEqualsWidth()
         marvelImageView.layout(
             20,
-            |-20-favouriteIcon,
+            |-20-favouriteIcon.size(30),
             >=10,
             |-20-marvelTitleLabel,
-            60
+            20
         )
         marvelDescContainer.layout(
             20,
-            |-20-marvelDescLabel-20-|,
-            20,
-            |-20-comicTitleLabel-20-|,
+            |-30-marvelDescLabel-20-|,
             10,
-            |comicCollectionView| ~ 200,
-            >=10
+            |marvelDetailTableView|,
+            0
         )
-        marvelDescContainer.Top == marvelImageView.Bottom - 40
     }
     
     override func setupUI() {
-        viewModel.fetchAllComics().then { data in
-            self.updateComicTable(data)
+        viewModel.fetch()
+        viewModel.onUpdate = { [weak self] in
+            guard let `self` = self else { return }
+            self.marvelDetailTableView.update(List.dataSource(sections: [MarvelCollection.comics], items: [self.viewModel.data]))
         }
-    }
-    
-    func updateComicTable(_ comics: [Comics]) {
-        self.comicCollectionView.updateItems(List.dataSource(sections: .empty, items: [comics]))
     }
 }
 
-class ComicCollectionViewCell: CollectionViewCell, Configurable {
+class MarvelDetailTableViewCell: TableViewCell, Configurable {
     
-    let comicImageView = UIImageView().then {
-        $0.layer.cornerRadius = 30.0
+    var onSelect: ((MarvelCollectable) -> Void)?
+    
+    lazy var marvelTypeCollectionView = CollectionView<Any, MarvelCollectable>(.horizontal, lineSpacing: 10.0, widthFactor: 0.45, heightFactor: 1.0).then {
+        $0.register(MarvelTypeCollectionCell.self)
+        $0.configureCell = {
+            $0.dequeueCell(MarvelTypeCollectionCell.self, at: $1, with: $2)
+        }
+        $0.didSelect = { [weak self] _, _, item in
+            self?.onSelect?(item)
+        }
+        $0.showsHorizontalScrollIndicator = false
+        $0.isPagingEnabled = true
+    }
+    
+    override func render() {
+        sv(marvelTypeCollectionView)
+        marvelTypeCollectionView.fillContainer(10).height(200)
+    }
+    
+    func configure(_ item: MarvelCollectionType) {
+        self.marvelTypeCollectionView.updateItems(List.dataSource(sections: .empty, items: [item.items]))
+    }
+}
+
+class MarvelTypeCollectionCell: CollectionViewCell, Configurable {
+    
+    let imageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.layer.cornerRadius = 10.0
         $0.clipsToBounds = true
     }
     
-    let comicTitle = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.style("", font: .boldSystemFont(ofSize: 16), color: .white, isMultiline: true)
     }
     
     override func render() {
-        sv(comicImageView, comicTitle)
-        comicImageView.fillContainer()
-        comicTitle.Bottom == comicImageView.Bottom - 20
-        comicTitle.left(10)
+        sv(imageView, titleLabel)
+        imageView.fillContainer()
+        titleLabel.left(10).bottom(10)
     }
     
-    func configure(_ item: Comics) {
-        comicImageView.load(item.imageUrl)
-        comicTitle.text = item.title
+    func configure(_ item: MarvelCollectable) {
+        imageView.load(item.imageUrl)
+        titleLabel.text = item.title
     }
 }
-
-//    lazy var marvelDetailTableView = TableView<String, MarvelCollectionType>().then {
-//        $0.register(MarvelDetailTableViewCell.self)
-//        $0.update(List.dataSource(sections: .empty, items: [viewModel.data]))
-//        $0.headerHeight = { _ in 40 }
-//        $0.separatorStyle = .none
-//        $0.header = { _, _, item in
-//            UILabel().then {
-//                $0.text = item
-//            }
-//        }
-//    }
-//
-//    override func render() {
-//        view.sv(backButton, marvelDetailTableView)
-//        //        backButton.left(20).top(20)
-//        //        marvelDetailTableView.Top == backButton.Bottom + 10
-//        view.layout(
-//            50,
-//            |-20-backButton,
-//            10,
-//            |-20-marvelDetailTableView-20-|,
-//            20
-//        )
-//        align(lefts: backButton, marvelDetailTableView)
-//        marvelDetailTableView.centerInContainer()
-//    }
-//
-//    override func setupUI() {
-//        viewModel.fetch()
-//        viewModel.update = { [weak self] in
-//            guard let `self` = self else { return }
-//            self.marvelDetailTableView.update(List.dataSource(sections: .empty, items: [self.viewModel.data]))
-//            print("From SetupUI: \(self.viewModel.data)")
-//        }
-//    }
-//}
-//
-//class MarvelDetailTableViewCell: TableViewCell, Configurable {
-//
-//    let marvelTypeCollectionView = CollectionView<Any, MarvelCollectable>(.horizontal).then {
-//        $0.register(MarvelTypeCollectionCell.self)
-//        $0.configureCell = {
-//            $0.dequeueCell(MarvelTypeCollectionCell.self, at: $1, with: $2)
-//        }
-//    }
-//
-//    let collectionImageView = UIImageView().then {
-//        $0.width(50%).height(150)
-//    }
-//
-//    let collectionNameLabel = UILabel().then {
-//        $0.style("", font: .boldSystemFont(ofSize: 24), color: .white, isMultiline: true)
-//    }
-//
-//    override func render() {
-//        sv(collectionImageView.sv(collectionNameLabel))
-//        collectionImageView.top(0).left(0).right(0).bottom(0)
-//        collectionNameLabel.Top == collectionImageView.Bottom - 40
-//        collectionNameLabel.left(20)
-//    }
-//
-//    func configure(_ item: MarvelCollectionType) {
-//        //        collectionImageView.load(item.items[0].thumbnail.imagePath + "." + item.items[0].thumbnail.imageExtension)
-//        collectionImageView.backgroundColor = .red
-//        collectionNameLabel.text(item.items[0].title)
-//    }
-//}
-//
-//class MarvelTypeCollectionCell: CollectionViewCell, Configurable {
-//
-//    let imageView = UIImageView().then {
-//        $0.contentMode = .scaleAspectFill
-//        $0.size(200)
-//    }
-//
-//    let titleLabel = UILabel()
-//
-//    override func render() {
-//        sv(imageView, titleLabel)
-//    }
-//
-//    func configure(_ item: MarvelCollectable) {
-//        imageView.load(item.thumbnail.imagePath + "." + item.thumbnail.imageExtension)
-//        titleLabel.text = item.title
-//    }
-//}
-//

@@ -8,9 +8,20 @@
 
 import Arrow
 import then
+import Foundation
 
 enum MarvelCollection: Int, CaseIterable {
-    case comics, series
+    case comics, series, stories
+    var title: String {
+        switch self {
+        case .comics:
+            return "Comics"
+        case .series:
+            return "Series"
+        case .stories:
+            return "Stories"
+        }
+    }
 }
 
 struct MarvelCollectionType {
@@ -25,7 +36,23 @@ protocol MarvelCollectable {
     var thumbnail: Image { get set }
 }
 
+extension MarvelCollectable {
+    
+    var comic: Comics? {
+        return self as? Comics
+    }
+    
+    var series: Series? {
+        return self as? Series
+    }
+    
+    var stories: Stories? {
+        return self as? Stories
+    }
+}
+
 struct Image: ModelType {
+    
     var imagePath = ""
     var imageExtension = ""
     var imageUrl: String {
@@ -39,6 +66,7 @@ struct Image: ModelType {
 }
 
 extension MarvelCollectable {
+    
     var imageUrl: String {
         guard let images = images.first else { return "" }
         return images.imagePath + "." + images.imageExtension
@@ -57,6 +85,7 @@ extension MarvelCollectable {
 }
 
 struct Comics: MarvelCollectable, ModelType {
+    
     var id = -1
     var desc = ""
     var title = ""
@@ -70,6 +99,7 @@ struct Comics: MarvelCollectable, ModelType {
 }
 
 struct Series: MarvelCollectable, ModelType {
+    
     var id = -1
     var title = ""
     var images = [Image(imagePath: "", imageExtension: "")]
@@ -80,25 +110,16 @@ struct Series: MarvelCollectable, ModelType {
     }
 }
 
-class MarvelCollectionViewModel {
-    var data = MarvelCollection.allCases.map { MarvelCollectionType(title: $0, items: .empty) } {
-        didSet {
-            update?()
-        }
-    }
-    let characterId: Int
+struct Stories: MarvelCollectable, ModelType {
     
-    var update: (() -> Void)?
+    var images: [Image] = .empty
+    var id = -1
+    var title = ""
+    var desc = ""
+    var thumbnail = Image(imagePath: "", imageExtension: "")
     
-    init(_ characterId: Int) {
-        self.characterId = characterId
-    }
-    
-    func fetch() {
-        guard characterId != -1 else { return }
-        let comic: Promise<[Comics]> = Api.service(.comicsUrl(characterId))
-//        let series: Promise<[Series]> = Api.service(.comicsUrl(characterId))
-        comic.then { [weak self] in self?.data[MarvelCollection.comics.rawValue].items = $0 }
-        print("DATA: \(data)")
+    mutating func deserialize(_ json: JSON) {
+        parse(json)
+        desc <-- json["description"]
     }
 }
